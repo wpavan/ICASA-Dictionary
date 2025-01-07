@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Search</title>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.0/papaparse.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input[type="text"] { width: 300px; padding: 5px; margin-bottom: 10px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    table, th, td { border: 1px solid black; }
+    th, td { padding: 10px; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Search CSV Data</h1>
+  <p>Type a keyword to search:</p>
+  <input type="text" id="search" placeholder="Search...">
+  <div id="results"></div>
+
+  <script>
+    // Load and parse CSV
+    Papa.parse('./Metadata.csv', {
+      download: true,
+      header: true,
+      complete: function(results) {
+        const data = results.data;
+
+        // Display search results
+        document.getElementById('search').addEventListener('input', function(e) {
+          const query = e.target.value.toLowerCase();
+          const filteredData = data.filter(row => 
+            Object.values(row).some(value => value.toLowerCase().includes(query))
+          );
+
+          // Generate table for search results
+          const resultsDiv = document.getElementById('results');
+          if (filteredData.length > 0) {
+            let table = '<table><tr>';
+
+            // Table headers
+            for (let header in filteredData[0]) {
+              table += `<th>${header}</th>`;
+            }
+            table += '</tr>';
+
+            // Table rows
+            filteredData.forEach(row => {
+              table += '<tr>';
+              for (let header in row) {
+                table += `<td>${row[header]}</td>`;
+              }
+              table += '</tr>';
+            });
+            table += '</table>';
+            resultsDiv.innerHTML = table;
+          } else {
+            resultsDiv.innerHTML = '<p>No results found.</p>';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
