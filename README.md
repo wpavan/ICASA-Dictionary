@@ -5,5 +5,5 @@ We will add further information shortly.
 
 This repository contains an interactive tool for CSV data visualization.
 
-- 🔗 [Access the Interactive Page](index.html)
+- 🔗 [Access the Interactive Page](https://wpavan.github.io/ICASA-Dictionary/)
 - 📄 [View Raw CSV Data](Metadata.csv)
