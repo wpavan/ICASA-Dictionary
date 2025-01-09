@@ -66,7 +66,7 @@
 
 <h1>GitHub Repository Explorer</h1>
 <input type="text" id="query" placeholder="Ask about the repository..." style="width: 300px;">
-<button id="search">Search</button>
+<button id="searchGPT">Search</button>
 <pre id="results"></pre>
 
 <script>
@@ -74,7 +74,7 @@
     const repoName = "ICASA-Dictionary"; // Replace with your repository name
     const githubToken = "your-github-token"; // Optional, for authenticated requests
     
-    document.getElementById('search').addEventListener('click', async () => {
+    document.getElementById('searchGPT').addEventListener('click', async () => {
         const query = document.getElementById('query').value;
         const headers = githubToken ? { Authorization: `Bearer ${githubToken}` } : {};
         
