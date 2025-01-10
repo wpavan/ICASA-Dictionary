@@ -67,7 +67,7 @@
 <h1>GitHub Repository Explorer</h1>
 <input type="text" id="query" placeholder="Ask about the repository..." style="width: 300px;">
 <button id="searchGPT">Search</button>
-<pre id="results"></pre>
+<pre id="resultsGPT"></pre>
 
 <script>
     const repoOwner = "wpavan"; // Replace with your GitHub username
@@ -87,9 +87,9 @@
             const chatGPTResponse = await mockChatGPT(query, files);
 
             // Display results
-            document.getElementById('results').textContent = JSON.stringify(chatGPTResponse, null, 2);
+            document.getElementById('resultsGPT').textContent = JSON.stringify(chatGPTResponse, null, 2);
         } catch (error) {
-            document.getElementById('results').textContent = `Error: ${error.message}`;
+            document.getElementById('resultsGPT').textContent = `Error: ${error.message}`;
         }
     });
 
